@@ -9,3 +9,9 @@ variable "create_vpc" {
   default     = true
   type        = bool
 }
+
+variable "cidr_block" {
+  description = "The CIDR block for the VPC"
+  default     = []
+  type        = list(string)
+}
