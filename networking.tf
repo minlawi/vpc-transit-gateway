@@ -130,7 +130,7 @@ resource "aws_route" "internet_route" {
   gateway_id             = aws_internet_gateway.igw[0].id
 }
 
-resource "aws_route" "public_to_vpc0" {
+resource "aws_route" "vpc1_to_vpc0" {
   count                  = var.create_vpc ? 1 : 0
   route_table_id         = aws_route_table.public_route_table[0].id
   destination_cidr_block = aws_vpc.vpc[0].cidr_block
