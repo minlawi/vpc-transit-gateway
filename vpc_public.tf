@@ -46,12 +46,20 @@ resource "aws_internet_gateway" "internet_gateway" {
   }
 }
 
-# Create public route
+# Create Default Route for Public Subnet via Internet Gateway
 resource "aws_route" "route_public" {
   count                  = var.create_vpc ? 1 : 0
   route_table_id         = aws_route_table.route_table_public[0].id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.internet_gateway[0].id
+}
+
+# Create VPC Private Route via Transit Gateway
+resource "aws_route" "route_vpc_private" {
+  count                  = var.create_vpc ? 1 : 0
+  route_table_id         = aws_route_table.route_table_public[0].id
+  destination_cidr_block = aws_vpc.vpc_private[0].cidr_block
+  transit_gateway_id     = aws_ec2_transit_gateway.tgw[0].id
 }
 
 # Create Public Subnet for NAT Gateway
@@ -102,10 +110,18 @@ resource "aws_nat_gateway" "nat_gateway" {
   }
 }
 
-# Create NAT Route
+# Create Default Route in NAT Route Table via NAT Gateway
 resource "aws_route" "route_nat" {
   count                  = var.create_vpc ? 1 : 0
   route_table_id         = aws_route_table.route_table_nat[0].id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat_gateway[0].id
+}
+
+# Create Private Route in NAT Route Table via Transit Gateway
+resource "aws_route" "route_nat_private" {
+  count                  = var.create_vpc ? 1 : 0
+  route_table_id         = aws_route_table.route_table_nat[0].id
+  destination_cidr_block = aws_vpc.vpc_private[0].cidr_block
+  transit_gateway_id     = aws_ec2_transit_gateway.tgw[0].id
 }
