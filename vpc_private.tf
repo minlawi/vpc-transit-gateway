@@ -36,8 +36,8 @@ resource "aws_route_table_association" "route_table_association_private" {
   route_table_id = aws_route_table.route_table_private[0].id
 }
 
-# Create Default Route for Private Subnet via Transit Gateway
-resource "aws_route" "route_private" {
+# Create Default Route to anywhere via Transit Gateway
+resource "aws_route" "default_route_private" {
   count                  = var.create_vpc ? 1 : 0
   depends_on             = [aws_ec2_transit_gateway.tgw]
   route_table_id         = aws_route_table.route_table_private[0].id
