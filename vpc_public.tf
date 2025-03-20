@@ -121,6 +121,7 @@ resource "aws_route" "default_route_nat_rt" {
 # Create VPC Private Route in NAT Route Table via Transit Gateway
 resource "aws_route" "route_vpc_private_nat_rt" {
   count                  = var.create_vpc ? 1 : 0
+  depends_on             = [aws_ec2_transit_gateway.tgw]
   route_table_id         = aws_route_table.route_table_nat[0].id
   destination_cidr_block = aws_vpc.vpc_private[0].cidr_block
   transit_gateway_id     = aws_ec2_transit_gateway.tgw[0].id
