@@ -1,15 +1,15 @@
 resource "aws_launch_template" "vpc_private_nginx_lt" {
-  count                  = var.create_vpc ? 1 : 0
-  name_prefix            = "nginx-lt"
-  image_id               = data.aws_ami.ubuntu.id
-  instance_type          = local.t2_micro
-  key_name               = "my-key-pair"
+  count         = var.create_vpc ? 1 : 0
+  name_prefix   = "nginx-lt"
+  image_id      = data.aws_ami.ubuntu.id
+  instance_type = local.t2_micro
+  # key_name               = "my-key-pair"
   user_data              = filebase64("${path.module}/scripts/nginx-install.sh")
   vpc_security_group_ids = [aws_security_group.vpc_private_sg[0].id]
   tag_specifications {
     resource_type = "instance"
     tags = {
-      Name = "nginx-instance-${count.index}"
+      Name = "nginx-instance"
     }
   }
 }
@@ -31,7 +31,7 @@ resource "aws_autoscaling_group" "vpc_private_nginx_asg" {
   force_delete              = true
   tag {
     key                 = "Name"
-    value               = "nginx-instance-${count.index}"
+    value               = "nginx-instance"
     propagate_at_launch = true
   }
 }
