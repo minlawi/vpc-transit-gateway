@@ -32,12 +32,12 @@ resource "aws_lb_target_group" "vpc_private_nginx_tg" {
 
 resource "aws_lb_listener" "vpc_private_nginx_listener" {
   count             = var.create_vpc ? 1 : 0
-  load_balancer_arn = aws_lb.vpc_private_alb.arn
-  port              = "80"
+  load_balancer_arn = aws_lb.vpc_private_alb[0].arn
+  port              = local.http_port
   protocol          = "HTTP"
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.vpc_private_nginx_tg.arn
+    target_group_arn = aws_lb_target_group.vpc_private_nginx_tg[0].arn
   }
 }
