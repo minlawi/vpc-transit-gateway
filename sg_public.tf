@@ -7,7 +7,7 @@ resource "aws_security_group" "vpc_public_sg" {
   }
 }
 
-resource "aws_security_group_rule" "vpc_public_allow_all_ingress" {
+resource "aws_security_group_rule" "vpc_public_allows_all_ingress" {
   count             = var.create_vpc ? 1 : 0
   type              = "ingress"
   from_port         = 0
@@ -18,7 +18,7 @@ resource "aws_security_group_rule" "vpc_public_allow_all_ingress" {
   description       = "Allow all ingress traffic"
 }
 
-resource "aws_security_group_rule" "vpc_public_allow_all_egress" {
+resource "aws_security_group_rule" "vpc_public_allows_all_egress" {
   count             = var.create_vpc ? 1 : 0
   type              = "egress"
   from_port         = 0
