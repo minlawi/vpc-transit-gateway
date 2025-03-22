@@ -6,9 +6,9 @@
 * Deploy an AWS Transit Gateway (TGW) to facilitate communication between the two VPCs.
 * Attach both VPCs to the Transit Gateway using Transit Gateway Attachments.
 * Update Route Tables in each VPC:
-* VPC-Public routes VPC-Private traffic to the Transit Gateway.
-* VPC-Private routes VPC-Public traffic to the Transit Gateway.
-* VPC-Private routes internet-bound traffic to the NAT Gateway in VPC-Public.
+    * VPC-Public routes VPC-Private traffic to the Transit Gateway.
+    * VPC-Private routes VPC-Public traffic to the Transit Gateway.
+    * VPC-Private routes internet-bound traffic to the NAT Gateway in VPC-Public.
 
 # 2. Use Auto Scaling to Create Nginx Instances in VPC-Private
 * Define a Launch Template with:
