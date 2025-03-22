@@ -22,7 +22,7 @@ systemctl enable nginx
 SERVER_IP=$(hostname -I | awk '{print $1}')
 
 # Create a custom index page
-echo "<h1>Welcome to Nginx IP: <strong>$SERVER_IP</h1>" > /var/www/html/index.html
+echo "<h1>Welcome to Nginx! Running on $SERVER_IP</h1>" > /var/www/html/index.html
 
 # Verify NGINX is running
 systemctl status nginx
