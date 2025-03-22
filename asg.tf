@@ -2,7 +2,7 @@ resource "aws_launch_template" "vpc_private_nginx_lt" {
   count                  = var.create_vpc ? 1 : 0
   name_prefix            = "nginx-lt"
   image_id               = data.aws_ami.ubuntu.id
-  instance_type          = "t2.micro"
+  instance_type          = local.t2_micro
   key_name               = "my-key-pair"
   user_data              = filebase64("${path.module}/scripts/nginx-install.sh")
   vpc_security_group_ids = [aws_security_group.vpc_private_sg[0].id]
@@ -21,11 +21,11 @@ resource "aws_autoscaling_group" "vpc_private_nginx_asg" {
   max_size         = 4
   min_size         = 1
   launch_template {
-    id      = aws_launch_template.vpc_private_nginx_lt.id
+    id      = aws_launch_template.vpc_private_nginx_lt[0].id
     version = "$Latest"
   }
   vpc_zone_identifier       = aws_subnet.subnet_private[*].id
-  target_group_arns         = [aws_lb_target_group.vpc_private_nginx_tg.arn]
+  target_group_arns         = [aws_lb_target_group.vpc_private_nginx_tg[0].arn]
   health_check_type         = "ELB"
   health_check_grace_period = 120
   force_delete              = true
