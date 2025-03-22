@@ -71,7 +71,7 @@ resource "aws_ec2_transit_gateway_route_table_propagation" "tgw_route_table_prop
 # Transit Gateway Default Route
 resource "aws_ec2_transit_gateway_route" "tgw_route" {
   count                          = var.create_vpc ? 1 : 0
-  destination_cidr_block         = "0.0.0.0/0"
+  destination_cidr_block         = local.all_zero
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.tgw_route_table[0].id
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.tgw_public_vpc_attachment[0].id
 }
