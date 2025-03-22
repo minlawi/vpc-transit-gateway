@@ -14,7 +14,7 @@ resource "aws_security_group_rule" "vpc_public_allows_all_ingress" {
   to_port           = local.all_ports
   protocol          = local.all_protocols
   security_group_id = aws_security_group.vpc_public_sg[0].id
-  cidr_blocks       = local.all_cidr_blocks
+  cidr_blocks       = [local.all_cidr_blocks]
   description       = "Allow all ingress traffic"
 }
 
@@ -25,6 +25,6 @@ resource "aws_security_group_rule" "vpc_public_allows_all_egress" {
   to_port           = local.all_ports
   protocol          = local.all_protocols
   security_group_id = aws_security_group.vpc_public_sg[0].id
-  cidr_blocks       = local.all_cidr_blocks
+  cidr_blocks       = [local.all_cidr_blocks]
   description       = "Allow all egress traffic"
 }
