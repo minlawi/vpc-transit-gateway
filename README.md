@@ -1,6 +1,6 @@
 # VPC Peering with Transit Gateway
 
-![image alt](https://github.com/minlawi/vpc-transit-gateway/blob/ed376292d1af779e9b14b74e01207c1127161f7e/vpc-peering-transit-gateway.png)
+![image alt](https://github.com/minlawi/vpc-transit-gateway/blob/6f19d5dae84c1f1f1b44e80991fe55d8e64f5a98/vpc-peering-transit-gateway.png)
 
 # 1. Two VPC Peering with Transit Gateway
 * Create two VPCs:
