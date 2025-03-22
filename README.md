@@ -41,4 +41,4 @@
 * Ensure private instances have a Security Group rule allowing outbound internet traffic via the NAT Gateway.
 * This setup enables private Nginx instances to fetch updates and packages from the internet without exposing them directly.
 
-🚀 This architecture ensures high security, scalability, and internet access for private instances while keeping them protected from direct exposure. 🚀
+# 🚀 This architecture ensures high security, scalability, and internet access for private instances while keeping them protected from direct exposure. 🚀
