@@ -1,3 +1,7 @@
+# VPC Peering with Transit Gateway
+
+![image alt](https://github.com/minlawi/vpc-transit-gateway/blob/06a0e856dff1bba02a80b174e864b6520de87df8/vpc-peering-transit-gateway.png)
+
 # 1. Two VPC Peering with Transit Gateway
 * Create two VPCs:
     * VPC-Public (for external-facing resources, including the Bastion Host and NAT Gateway).
