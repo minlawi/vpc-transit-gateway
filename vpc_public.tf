@@ -50,7 +50,7 @@ resource "aws_internet_gateway" "internet_gateway" {
 resource "aws_route" "default_route_public_rt" {
   count                  = var.create_vpc ? 1 : 0
   route_table_id         = aws_route_table.route_table_public[0].id
-  destination_cidr_block = local.all_zero
+  destination_cidr_block = local.all_cidr_blocks
   gateway_id             = aws_internet_gateway.internet_gateway[0].id
 }
 
@@ -114,7 +114,7 @@ resource "aws_nat_gateway" "nat_gateway" {
 resource "aws_route" "default_route_nat_rt" {
   count                  = var.create_vpc ? 1 : 0
   route_table_id         = aws_route_table.route_table_nat[0].id
-  destination_cidr_block = local.all_zero
+  destination_cidr_block = local.all_cidr_blocks
   nat_gateway_id         = aws_nat_gateway.nat_gateway[0].id
 }
 
