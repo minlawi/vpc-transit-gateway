@@ -3,7 +3,7 @@ resource "aws_launch_template" "vpc_private_nginx_lt" {
   name_prefix   = "nginx-lt"
   image_id      = data.aws_ami.ubuntu.id
   instance_type = local.t2_micro
-  key_name               = "my-key-pair"
+  # key_name               = "my-key-pair"
   user_data              = filebase64("${path.module}/scripts/nginx-install.sh")
   vpc_security_group_ids = [aws_security_group.vpc_private_sg[0].id]
   tag_specifications {
