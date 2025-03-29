@@ -1,4 +1,4 @@
-# VPC Peering with Transit Gateway
+# VPC Peering with Transit Gateway in Same Region
 
 ![image alt](https://github.com/minlawi/vpc-transit-gateway/blob/6f19d5dae84c1f1f1b44e80991fe55d8e64f5a98/vpc-peering-transit-gateway.png)
 
